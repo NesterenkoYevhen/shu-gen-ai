@@ -24,7 +24,7 @@ export interface IMobileMenuConroller {
 }
 
 export const HeaderMobileMenu:FC<IHeaderMobileMenu> = ({ isActive, setActive }) => (
-  <nav className={cn(styles.root, 'bg-background-light dark:bg-background-dark', 'relative', { [styles.active]: isActive })}>
+  <nav className={cn(styles.root, 'bg-background-light dark:bg-background-dark', { [styles.active]: isActive })}>
     <Container className="!p-0">
       <div className={cn(styles.contentContainer)}>
         <ul className="bg-neutralsGrey100-light dark:bg-neutralsGrey100-dark rounded-2xl">
