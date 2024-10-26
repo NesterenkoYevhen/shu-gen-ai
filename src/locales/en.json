@@ -1,0 +1,381 @@
+{
+  "logged-in-dropdown": {
+    "billing": "Billing info",
+    "recent": "Recent tools",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+
+  "search": {
+    "all-tools": "All tools",
+    "placeholder": "Search"
+  },
+
+  "header": {
+    "pdf": "PDF",
+    "image": "Image",
+    "write": "Write",
+    "video": "Video",
+    "file": "File",
+    "sign-in": "Sign in",
+    "file-tools": "file tools",
+    "ai-tools": "AI Tools",
+    "features-tools": "Features tools",
+    "other-image-tools": "other image tools",
+    "all-image-tools": "All image tools",
+    "coming-soon": "coming soon",
+    "pdf-tools": "PDF tools",
+    "video-tools": "Video tools",
+    "other-write-tools": "other write tools",
+    "all-write-tools": "All write tools"
+  },
+
+  "main-page": {
+    "recent-tools": "Recent tools:",
+    "title": "Transform your photos with ease professional photo editing",
+    "hero-description": "Quick tools for background removal, object editing, and format conversion—all in one platform",
+
+    "tools-grid": {
+      "pdf-title": "PDF tools",
+      "pdf-description": "Easily convert and manipulate PDF documents, including merging, splitting, and compressing files.",
+      "image-title": "Image tools",
+      "image-description": "Edit images with tools for resizing, cropping, and enhancing quality for perfect results.",
+      "video-title": "Video tools",
+      "video-description": "Process and edit videos seamlessly with features like trimming, merging, and converting formats.",
+      "ai-title": "AI tools",
+      "ai-description": "Utilize advanced AI algorithms for automated editing tasks, including background removal and object recognition.",
+      "file-title": "File tools",
+      "file-description": "Manage and convert various file types easily, ensuring compatibility and ease of access."
+    },
+
+    "ticker-text": "editing tools",
+
+    "statistics": {
+      "title": "Statistics",
+      "description": "Our platform is designed to simplify and enhance your editing experience, no matter what your needs are. With a wide range of powerful tools and a strong user base, we've established ourselves as a go-to solution for millions of users globally",
+      "card1": "Files converted",
+      "card2": "Images processed",
+      "card3": "Active users",
+      "card4": "Online tools"
+    },
+
+    "slider-tools": {
+      "title": "Explore our latest tools and insights",
+      "recent": "recent",
+      "card1": {
+        "title": "Increase image resolution",
+        "description": "Increase the resolution of your image"
+      },
+      "learn-more": "Learn more"
+    },
+
+    "plans": {
+      "title": "Price plans",
+      "subscribe": "Subscribe",
+      "popular": "most popular", 
+      "free-plan": {
+        "title": "Free plan",
+        "price": "3 days",
+        "period": "/ trial",
+        "feature1": "Full access for file convertor tools",
+        "feature2": "Full access for pdf tools",
+        "feature3": "Two exclusive features from image tools",
+        "feature4": "Ads displayed or limited support"
+      },
+
+      "pro-plan": {
+        "title": "Pro plan",
+        "price": "$5",
+        "period": "/ month",
+        "feature1": "All features of the Free Plan without ads",
+        "feature2": "Full access for image tools",
+        "feature3": "Full access for video tools",
+        "feature4": "Access to more tools or advanced features",
+        "feature5": "Increased number of downloads and support for larger files",
+        "feature6": "Priority customer support"
+      },
+
+      "pro-plus-plan": {
+        "title": "Pro+ plan",
+        "price": "$10",
+        "period": "/ month",
+        "feature1": "All features of the Pro Plan",
+        "feature2": "Full access for write tools",
+        "feature3": "Access to exclusive tools not available in the free version",
+        "feature4": "Enhanced data processing capabilities",
+        "feature5": "Exclusive access to beta versions of new tools",
+        "feature6": "Priority 24/7 technical support"
+      }
+    },
+
+    "tabs": {
+      "title":"Our most popular tools",
+      "description": "We offer PDF, video, image and other online tools to make your life easier",
+      "all": "All tools",
+      "pdf": "PDF tools",
+      "video": "Video tools",
+      "image": "Image tools",
+      "file": "File tools",
+      "write": "Write tools"
+    }
+  },
+
+  "footer": {
+    "navigation": "Navigation",
+    "home": "Home",
+    "privacy": "Privacy policy",
+    "tos": "TOS",
+    "contract": "Contract",
+    "copyright": "2024 Copyright ShuGenAi. All rights reserved"
+  },
+
+  "error": {
+    "go-main": "Go to the main page",
+    "support": "Support",
+    "not-found": {
+      "title": "404 page",
+      "description": "Sorry, we can’t find the page you are looking for"
+    },
+    "error": {
+      "title": "Oops!"
+    }
+  },
+
+  "features": {
+    "image": {
+      "name": "Image",
+      "category": "Image tools",
+      "remove-the-background": {
+        "name": "Remove the background",
+        "description": "Remove the background from images"
+      },
+      "cut-out-an-object": {
+        "name": "Cut out an object",
+        "description": "Cut out objects from images"
+      },
+      "pick-up-an-object": {
+        "name": "Pick up an object",
+        "description": "Select an object within images"
+      },
+      "edit-the-background": {
+        "name": "Edit the background",
+        "description": "Change or modify image backgrounds"
+      },
+      "black-and-white": {
+        "name": "Black and white",
+        "description": "Convert images to black and white"
+      },
+      "round": {
+        "name": "Round",
+        "description": "Make images circular or round"
+      },
+      "pixelate": {
+        "name": "Pixelate",
+        "description": "Apply pixelation to images"
+      },
+      "blur": {
+        "name": "Blur",
+        "description": "Blur images"
+      },
+      "compress": {
+        "name": "Compress",
+        "description": "Compress images to reduce size"
+      },
+      "heic-to-jpg": {
+        "name": "HEIC to JPG",
+        "description": "Convert HEIC images to JPG"
+      },
+      "png-to-jpg": {
+        "name": "PNG to JPG",
+        "description": "Convert PNG images to JPG"
+      },
+      "raw-to-jpg": {
+        "name": "RAW to JPG",
+        "description": "Convert RAW images to JPG"
+      },
+      "tiff-to-jpg": {
+        "name": "TIFF to JPG",
+        "description": "Convert TIFF images to JPG"
+      }
+    },
+    "write": {
+      "name": "Write",
+      "category": "Write tools",
+      "summary": {
+        "name": "Summary",
+        "description": "Generate a brief summary of content"
+      },
+      "rewriter": {
+        "name": "Rewriter",
+        "description": "Rewrite content with new wording"
+      },
+      "essay": {
+        "name": "Essay",
+        "description": "Generate or help write essays"
+      },
+      "paragraph": {
+        "name": "Paragraph",
+        "description": "Generate or improve paragraphs"
+      },
+      "grammar-checker": {
+        "name": "Grammar checker",
+        "description": "Check and correct grammar mistakes"
+      },
+      "post": {
+        "name": "Post",
+        "description": "Generate posts for social media"
+      },
+      "code-documentation": {
+        "name": "Code documentation",
+        "description": "Generate documentation for code"
+      }
+    },
+    "file": {
+      "name": "File",
+      "category": "File tools",
+      "xml-to-json": {
+        "name": "XML to JSON",
+        "description": "Convert XML files to JSON format"
+      },
+      "json-to-xml": {
+        "name": "JSON to XML",
+        "description": "Convert JSON files to XML format"
+      },
+      "xml-to-csv": {
+        "name": "XML to CSV",
+        "description": "Convert XML files to CSV format"
+      },
+      "json-to-csv": {
+        "name": "JSON to CSV",
+        "description": "Convert JSON files to CSV format"
+      },
+      "xls-to-csv": {
+        "name": "XLS to CSV",
+        "description": "Convert XLS files to CSV format"
+      },
+      "xls-to-json": {
+        "name": "XLS to JSON",
+        "description": "Convert XLS files to JSON format"
+      },
+      "xls-to-xml": {
+        "name": "XLS to XML",
+        "description": "Convert XLS files to XML format"
+      }
+    },
+    "pdf": {
+      "name": "PDF",
+      "category": "PDF tools",
+      "docx-to-pdf": {
+        "name": "DOCX to PDF",
+        "description": "Convert DOCX files to PDF format"
+      },
+      "pdf-to-docx": {
+        "name": "PDF to DOCX",
+        "description": "Convert PDF files to DOCX format"
+      },
+      "compress": {
+        "name": "Compress",
+        "description": "Compress PDF files to reduce size"
+      }
+    },
+    "video": {
+      "name": "Video",
+      "category": "Video tools",
+      "compress": {
+        "name": "Compress",
+        "description": "Compress video files to reduce size"
+      },
+      "video-to-gif": {
+        "name": "Video to GIF",
+        "description": "Convert video files to GIF format"
+      },
+      "mkv-to-mp4": {
+        "name": "MKV to MP4",
+        "description": "Convert MKV files to MP4 format"
+      },
+      "mp4-to-mp3": {
+        "name": "MP4 to MP3",
+        "description": "Extract audio from MP4 to MP3"
+      }
+    }
+  },
+
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "email-required": "Email is required.",
+      "email-not-valid": "Enter a valid email.",
+      "password-required": "Password is required.",
+      "success": "Successfully logged in!",
+      "email-label": "Email",
+      "email-placeholder": "example@gmail.com",
+      "password-label": "Enter a password",
+      "password-placeholder": "Your password",
+      "forget-password": "Forget password?",
+      "submit-label": "Sign in",
+      "submit-pending": "Signing in...",
+      "no-account": "Don't have an account?",
+      "sign-up": "Sign up",
+      "remember-me": "Remember me"
+    },
+    "registration": {
+      "title": "Sign up",
+      "email-required": "Email is required.",
+      "email-not-valid": "Enter a valid email.",
+      "password-required": "Password is required.",
+      "password-min-length": "Password must be at least 8 characters long.",
+      "password-uppercase": "Password must contain an uppercase letter.",
+      "password-lowercase": "Password must contain a lowercase letter.",
+      "password-english-letters": "Password must only contain English letters.",
+      "success": "Check your email and enter your verification code",
+      "email-label": "Email",
+      "email-placeholder": "example@gmail.com",
+      "password-label": "Create a password",
+      "password-placeholder": "Your password",
+      "subscribe-news": "Subscribe to the newsletter",
+      "submit-label": "Sign up",
+      "submit-pending": "Signing up...",
+      "already-have-account": "Already have an account?",
+      "sign-in": "Sign in"
+    },
+    "forgot-password": {
+      "title": "Forgot password",
+      "email-required": "Email is required.",
+      "email-not-valid": "Enter a valid email.",
+      "success": "Check your email and enter your password reset code",
+      "email-label": "Email",
+      "email-placeholder": "example@gmail.com",
+      "submit-label": "Send",
+      "submit-pending": "Sending..."
+    },
+    "reset-password": {
+      "title": "Reset your password",
+      "code-label": "Verification Code",
+      "code-placeholder": "Enter 6-digit code",
+      "code-invalid": "Code must be 6 digits.",
+      "password-required": "Password is required.",
+      "password-min-length": "Password must be at least 8 characters.",
+      "password-uppercase": "Must contain an uppercase letter.",
+      "password-lowercase": "Must contain a lowercase letter.",
+      "password-number": "Must contain a number.",
+      "confirm-password-mismatch": "Passwords must match.",
+      "new-password-label": "New password",
+      "new-password-placeholder": "Enter a password",
+      "confirm-password-label": "Repeat a new password",
+      "confirm-password-placeholder": "Repeat your new password",
+      "success": "Your password has been successfully changed",
+      "submit-label": "Send",
+      "submit-pending": "Sending..."
+    },
+    "confirm-registration": {
+      "title": "Confirm registration",
+      "code-label": "Verification Code",
+      "code-placeholder": "Enter 6-digit code",
+      "code-invalid": "Code must be 6 digits.",
+      "success": "You've been successfully registered",
+      "submit-label": "Send",
+      "submit-pending": "Sending..."
+    }
+  }
+  
+}

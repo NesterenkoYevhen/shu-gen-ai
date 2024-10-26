@@ -1,0 +1,20 @@
+.root{
+    position: absolute;
+    transform: translateY(-20px);
+    left: 0;
+    top: 110px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+    padding: 32px 0;
+    z-index: 10;
+    width: 100%;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    &.active{ 
+        transition: all 0.3s linear;
+        transform: translateY(0px);
+        opacity: 1;
+        visibility: visible;
+    }
+}

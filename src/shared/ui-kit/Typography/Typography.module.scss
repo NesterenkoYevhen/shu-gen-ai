@@ -1,0 +1,55 @@
+.title-1 {
+  @apply text-title1;
+}
+
+.title-2 {
+  @apply text-title2;
+}
+
+.title-3 {
+  @apply text-title3;
+}
+
+.title-4 {
+  @apply text-title4;
+}
+
+.title-5{ 
+  @apply text-title5;
+}
+
+.main{ 
+  @apply text-main;
+}
+
+.secondary{ 
+  @apply text-secondary;
+}
+
+.small { 
+  @apply text-small;
+}
+
+.label {
+  @apply text-label;
+}
+
+.button {
+  @apply text-button;
+}
+
+.error {
+  @apply text-error
+}
+
+.tiny {
+  font-weight: 300;
+ } 
+
+.regular {
+ font-weight: 400;
+} 
+
+.bold{
+  font-weight: 700;
+} 

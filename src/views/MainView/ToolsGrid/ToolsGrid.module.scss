@@ -1,0 +1,36 @@
+.gridTools {
+  display: grid;
+  gap: 24px;
+  grid-template-areas: 
+    "pdf"
+    "image"
+    "video"
+    "ai"
+    "file";
+  
+  @screen tablet {
+    grid-template-areas: 
+    "pdf . ai ."
+    "image video . file";
+  }
+}
+
+.gridPdf {
+  grid-area: pdf;
+}
+
+.gridAi {
+  grid-area: ai;
+}
+
+.gridImage {
+  grid-area: image;
+}
+
+.gridVideo {
+  grid-area: video;
+}
+
+.gridFile {
+  grid-area: file;
+}

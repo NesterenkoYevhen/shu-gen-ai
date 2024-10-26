@@ -1,0 +1,66 @@
+@import url('https://fonts.cdnfonts.com/css/tt-norms-pro');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #18181A;
+  --transition-duration: 0.5s;
+  --transition-timing-function: ease;
+  --inputBorderColor: #B6B6BC;
+  --inputBorderColorActive: #18181A;
+  --checkBoxBorder: #8E8F96;
+}
+
+.dark {
+  --background: #1C1C1C;
+  --foreground: #ffffff;
+  --inputBorderColor: #F5F6FA;
+  --inputBorderColorActive: #B6B6BC;
+  --checkBoxBorder: #F5F6FA;
+}
+
+body {
+  position: relative;
+  font-family: 'TT Norms Pro', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
+  max-width: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  height: auto;
+  min-height: 100dvh;
+  padding-bottom: 1100px;
+
+  @screen sm {
+    padding-bottom: 616px;
+  }
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.openOverlay {
+  overflow: hidden;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  display: none !important;
+}

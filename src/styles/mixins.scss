@@ -1,0 +1,41 @@
+$maxWidth: 1440;
+$containerWidth: 1366;
+
+@mixin scrollBar {
+  &::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    // background: theme('colors.primaryGreen.light');
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    // background: #555;
+  }
+}
+  
+@mixin adaptive-value($property, $startSize, $minSize) {
+  $addSize: $startSize - $minSize;
+  #{$property}: $startSize + px;
+
+  @media(max-width: #{$containerWidth + px}) {
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 375px) / #{$containerWidth - 360}))
+  }
+}
+
+@mixin crop-text($max-width: 100%) {
+  white-space: nowrap;
+  max-width: #{$max-width};
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
