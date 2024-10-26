@@ -7,7 +7,7 @@ import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 interface IToolItem {
   name: string,
   link: PathnamesType,
-  description: string,
+  description?: string,
   Icon: IconType
 }
 
@@ -21,7 +21,7 @@ export const ToolItem:FC<IToolItem> = ({
       </div>
       <div className="flex flex-col gap-0.5">
         <Typography variant={TypographyVariants.MAIN}>{name}</Typography>
-        <Typography variant={TypographyVariants.SECONDARY} className="text-neutralsGrey500-light dark:text-neutralsGrey500-dark">{description}</Typography>
+        {description && <Typography variant={TypographyVariants.SECONDARY} className="text-neutralsGrey500-light dark:text-neutralsGrey500-dark">{description}</Typography>}
       </div>
     </LocaleLink>
   </li>

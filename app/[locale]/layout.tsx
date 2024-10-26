@@ -27,6 +27,11 @@ export default async function RootLayout({
           href="https://fonts.cdnfonts.com/css/tt-norms-pro"
           rel="stylesheet"
         />
+        <meta property="og:title" content="Shu Gen AI - editing tools" />
+        <meta property="og:description" content="Quick tools for background removal, object editing, and format conversion—all in one platform" />
+        <meta property="og:url" content="https://shu-gen-ai.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/opengraph.png" />
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider

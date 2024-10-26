@@ -54,7 +54,7 @@ export const MenuImage:FC<MenuImageProps> = ({ isActive, setActiveItem, classNam
           </Typography>
           <ul className="flex flex-col gap-4 mt-6">
             {ai.map((el) => (
-              <ToolItem name={t(`features.${el.label}.name`)} description={t(`features.${el.label}.description`)} link={el.route} Icon={el.Icon} key={el.id} />
+              <ToolItem name={t(`features.${el.label}.name`)} link={el.route} Icon={el.Icon} key={el.id} />
             ))}
           </ul>
         </div>
