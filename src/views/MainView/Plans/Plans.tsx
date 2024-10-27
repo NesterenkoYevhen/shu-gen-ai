@@ -8,42 +8,23 @@ export const Plans = () => {
   const plans = [
     {
       label: 'free-plan',
-      features: [
-        'feature1',
-        'feature2',
-        'feature3',
-        'feature4',
-      ],
+      features: ['feature1', 'feature2', 'feature3', 'feature4'],
     },
     {
       label: 'pro-plan',
-      features: [
-        'feature1',
-        'feature2',
-        'feature3',
-        'feature4',
-        'feature5',
-        'feature6',
-      ],
+      features: ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'],
       isPopular: true,
     },
     {
       label: 'pro-plus-plan',
-      features: [
-        'feature1',
-        'feature2',
-        'feature3',
-        'feature4',
-        'feature5',
-        'feature6',
-      ],
+      features: ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'],
     },
   ];
 
   return (
     <>
       <Typography variant={TypographyVariants.TITLE_2}>{t('title')}</Typography>
-      <ul className="mt-10 flex justify-between flex-wrap gap-6">
+      <ul className="mt-10 flex flex-wrap gap-6 justify-center">
         {plans.map((plan, index) => (
           <Plan key={index} {...plan} />
         ))}
