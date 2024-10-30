@@ -6,6 +6,7 @@ export const locales = ['en', 'ua'] as const;
 export const pathnames = {
   '/': '/',
   '/search': '/search',
+  '/profile': '/profile',
   '/pdf/docx-to-pdf': '/pdf/docx-to-pdf',
   '/pdf/pdf-to-docx': '/pdf/pdf-to-docx',
   '/pdf/compress': '/pdf/compress',

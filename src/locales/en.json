@@ -376,6 +376,124 @@
       "submit-label": "Send",
       "submit-pending": "Sending..."
     }
+  },
+
+  "profile": {
+    "navigation": {
+      "item-1": "My profile",
+      "item-2": "Membership",
+      "item-3": "Recent tools",
+      "item-4": "Notifications",
+      "item-5": "Password & security",
+      "item-6": "Delete account",
+      "logout": "Logout"
+    },
+    "account": {
+      "title": "Account",
+      "edit": "Edit"
+    },
+    "delete-account": {
+      "title": "Delete your account",
+      "description": "Before proceeding, please note that deleting your account is irreversible. Once your account is deleted, you will lose access to all your data, settings, and any services linked to your account. This action cannot be undone",
+      "confirm-msg": "I want to delete an account",
+      "delete": "Delete",
+      "delete-success": "Your account was successfully deleted"
+    },
+    "membership": {
+      "title": "Membership",
+      "next-billing": "Your next billing date is",
+      "change-plan": "Change plan",
+      "plans-title": "Plans",
+      "plans-placeholder": "Choose your plan",
+      "cards-title": "Cards",
+      "cards-placeholder": "Choose your card",
+      "change": "Change",
+      "change-success": "Your plan was changed successfully",
+      "cancel": "Cancel membership",
+      "cancel-success": "Your membership was cancelled successfully!"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "notification-1": {
+        "title": "Email notifications",
+        "subtitle": "Receive updates and news",
+        "switch-1-title": "News",
+        "switch-1-subtitle": "Be the first to know about new features, improvements, and product launches",
+        "switch-2-title": "Promotions",
+        "switch-2-subtitle": "Get exclusive offers, discounts, and special deals straight to your inbox"
+      },
+      "notification-2": {
+        "title": "In-app notifications",
+        "subtitle": "Get notifications within the app",
+        "switch-1-title": "System alerts",
+        "switch-1-subtitle": "Receive critical alerts for maintenance updates or service interruptions",
+        "switch-2-title": "Activity reminders",
+        "switch-2-subtitle": "Get reminders for tasks, deadlines, or other activities that need your attention"
+      }
+    },
+    "password": {
+      "title": "Password & Security",
+      "old-password-required": "Old password is required",
+      "new-password-required": "New password is required",
+      "password-min-length": "Password must be at least 8 characters.",
+      "password-uppercase": "Must contain an uppercase letter.",
+      "password-lowercase": "Must contain a lowercase letter.",
+      "password-number": "Must contain a number.",
+      "confirm-password-mismatch": "Passwords must match.",
+      "success": "Password has been updated succesfully",
+      "current-password-label": "Current password",
+      "current-password-placeholder": "Enter current password",
+      "new-password-label": "New password",
+      "new-password-placeholder": "Enter new password",
+      "confirm-new-password-label": "Confirm password",
+      "confirm-new-password-placeholder": "Confirm new password",
+      "submit": "Update",
+      "submit-pending": "Updating..."
+    },
+    "payment-details": {
+      "title": "Payment details",
+      "card-add": {
+        "title": "Create payment card",
+        "invalid-card-number": "Invalid card number. Must be 16 digits.",
+        "success": "Successfully created payment card!",
+        "card-number-label": "Card number",
+        "card-number-placeholder": "XXXX XXXX XXXX XXXX",
+        "submit": "Create",
+        "submit-pending": "Creating...",
+        "add-new": "Add new"
+      },
+      "card-delete": {
+        "success": "You card was deleted successfully!"
+      }
+    },
+    "personal-info": {
+      "title": "Personal information",
+      "username-error": "Username should be less than 20 characters",
+      "name-error": "Name should contain only letters",
+      "phone-error": "Invalid phone format (123) 456 7890",
+      "success": "Personal information updated successfully",
+      "username-label": "Username",
+      "username-placeholder": "Enter your username",
+      "first-name-label": "First name",
+      "first-name-placeholder": "Enter your first name",
+      "last-name-label": "Last name",
+      "last-name-placeholder": "Enter your last name",
+      "phone-label": "Phone",
+      "phone-placeholder": "Enter your phone",
+      "email-label": "Email",
+      "email-placeholder": "Enter your email",
+      "submit": "Update",
+      "submit-pending": "Updating..."
+    },
+    "recent-tools": {
+      "title": "Recent tools",
+      "date": "Date",
+      "tools": "Tools",
+      "file": "File",
+      "view": "View",
+      "seeMore": "See more",
+      "seeLess": "See less"
+    }
   }
   
 }

@@ -11,13 +11,14 @@ import styles from './Button.module.scss';
 export enum ButtonVariants {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  DANGER = 'danger',
   BORDER_RED = 'border-red',
+  BORDER_GREY = 'border-grey',
 }
 
-export enum ButtonColors {
-  GREEN = 'green',
-  WHITE = 'white',
-  RED = 'red',
+export enum ButtonSize {
+  DEFAULT = 'default',
+  SMALL = 'small',
 }
 
 interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -25,8 +26,8 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: ReactNode | ReactNode[];
   variant?: ButtonVariants;
-  color?: ButtonColors;
   type?: 'submit' | 'reset' | 'button';
+  size?: ButtonSize;
   disabled?: boolean;
   StartIcon?: Svg;
   EndIcon?: Svg;
@@ -42,7 +43,7 @@ export const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
     onClick,
     disabled = false,
     variant = ButtonVariants.PRIMARY,
-    color = ButtonColors.GREEN,
+    size = ButtonSize.DEFAULT,
     StartIcon,
     EndIcon,
     startIconClassName,
@@ -52,7 +53,7 @@ export const Button = forwardRef<Ref, ButtonProps>((props, ref) => {
   } = props;
   return (
     <button
-      className={cn(styles.root, styles[variant], styles[color], className)}
+      className={cn(styles.root, styles[variant], styles[size], className)}
       onClick={onClick}
       type={type}
       disabled={disabled}

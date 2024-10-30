@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import { useTranslations } from 'next-intl';
 
-import { TextfieldModal } from '@/shared/ui-kit/TextfieldModal';
+import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Checkbox } from '@/shared/ui-kit/Checkbox';
@@ -80,7 +80,7 @@ export const Registration: FC<IRegistration> = ({
         }}
       >
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('email-label')}
             isRequired
             placeholder={t('email-placeholder')}
@@ -90,7 +90,7 @@ export const Registration: FC<IRegistration> = ({
           />
         </fieldset>
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('password-label')}
             isRequired
             placeholder={t('password-placeholder')}

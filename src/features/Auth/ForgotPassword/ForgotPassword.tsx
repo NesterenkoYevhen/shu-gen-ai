@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import { useTranslations } from 'next-intl';
 
-import { TextfieldModal } from '@/shared/ui-kit/TextfieldModal';
+import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { AuthView } from '../AuthView';
@@ -65,7 +65,7 @@ export const ForgotPassword: FC<IForgotPassword> = ({
         }}
       >
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('email-label')}
             isRequired
             placeholder={t('email-placeholder')}

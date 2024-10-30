@@ -128,6 +128,7 @@ const config: Config = {
       systemRed: '#FF3535',
       purple: '#920DDA',
       transparent: 'transparent',
+      greenSwitch: '#34C759',
     },
     boxShadow: {
       menuLight: '0px 12px 40px 0px #0000001F',

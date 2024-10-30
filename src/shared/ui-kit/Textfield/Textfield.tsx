@@ -11,11 +11,11 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
 import { Typography, TypographyVariants } from '../Typography';
 
-import styles from './TextfieldModal.module.scss';
+import styles from './Textfield.module.scss';
 
 type InputAttributes = Omit<HTMLAttributes<HTMLInputElement>, 'onChange'>;
 
-export interface TextfieldModalProps extends InputAttributes {
+export interface TextfieldProps extends InputAttributes {
   name: string;
   label: string;
   isRequired?:boolean;
@@ -34,7 +34,7 @@ export interface TextfieldModalProps extends InputAttributes {
   value?: string;
 }
 
-export const TextfieldModal = memo((props: TextfieldModalProps) => {
+export const Textfield = memo((props: TextfieldProps) => {
   const {
     className,
     label,
@@ -71,7 +71,7 @@ export const TextfieldModal = memo((props: TextfieldModalProps) => {
   };
 
   return (
-    <div className={cn(styles.root, className, mods)}>
+    <div className={cn(styles.root, className, mods, 'relative mb-4')}>
       <div className="flex items-start gap-1 mb-1">
         <Typography
           variant={TypographyVariants.MAIN}
@@ -96,6 +96,7 @@ export const TextfieldModal = memo((props: TextfieldModalProps) => {
           min={min}
           disabled={disabled}
           onBlur={onBlur}
+          onChange={(e) => onChange && onChange(e.target.value)}
           {...rest}
         />
         {
@@ -103,7 +104,7 @@ export const TextfieldModal = memo((props: TextfieldModalProps) => {
         }
       </div>
 
-      <div className="mt-1 flex gap-2 items-center">
+      <div className="flex gap-2 items-center absolute left-0 bottom-[-25px]">
         {error && (
         <>
           <ErrorIcon />

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import { useTranslations } from 'next-intl';
 
-import { TextfieldModal } from '@/shared/ui-kit/TextfieldModal';
+import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { AuthView } from '../AuthView';
@@ -76,7 +76,7 @@ export const ResetPassword: FC<IResetPassword> = ({ isOpen, onClose, email }) =>
         }}
       >
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('code-label')}
             isRequired
             placeholder={t('code-placeholder')}
@@ -87,7 +87,7 @@ export const ResetPassword: FC<IResetPassword> = ({ isOpen, onClose, email }) =>
           />
         </fieldset>
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('new-password-label')}
             isRequired
             placeholder={t('new-password-placeholder')}
@@ -97,7 +97,7 @@ export const ResetPassword: FC<IResetPassword> = ({ isOpen, onClose, email }) =>
           />
         </fieldset>
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('confirm-password-label')}
             isRequired
             placeholder={t('confirm-password-placeholder')}

@@ -3,12 +3,22 @@
   cursor: pointer;
   outline: none;
   line-height: 19.2px;
-  min-height: 48px;
-  max-height: 48px;
   border-radius: 16px;
   font-family: theme('fontFamily.TTNormsPro');
   font-size: 16px;
   font-weight: 600;
+  display: flex;
+  gap: 8px;
+}
+
+.default {
+  min-height: 48px;
+  max-height: 48px;
+}
+
+.small {
+  min-height: 40px;
+  max-height: 40px;
 }
 
 .icon {
@@ -21,6 +31,7 @@
   background-color: theme('colors.primaryGreen.light');
 
   &:hover, &:focus {
+    transform: scale(1.05);
     background-color: theme('colors.secondaryGreen.light');
   }
 
@@ -48,7 +59,8 @@
   background-color: transparent;
 
   &:hover, &:focus {
-    border: 1px solid theme('colors.secondaryGreen.light');
+    background-color: var(--secondary-btn-bg);
+    transform: scale(1.05);
   }
 
   &:disabled{ 
@@ -68,13 +80,63 @@
   }
 }
 
+.border-grey {
+  @apply transition;
+  color: var(--border-grey-btn-text);
+  border: 1px solid theme('colors.neutralsGrey300.light');
+  background-color: transparent;
+
+  &:hover, &:focus {
+    background-color: var(--secondary-btn-bg);
+    transform: scale(1.05);
+  }
+
+  &:disabled{ 
+    cursor: not-allowed;
+    color: theme('colors.neutralsGrey400.light');
+
+    border: 1px solid theme('colors.neutralsGrey400.light');
+
+    &:hover {
+      border: 1px solid theme('colors.neutralsGrey400.light');
+    }
+  }
+
+  .icon {
+    @apply transition;
+    stroke: theme('colors.neutralsGrey400.light');
+  }
+}
+
+.danger {
+  @apply transition;
+  color: theme('colors.background.light');
+  background-color: theme('colors.red');
+
+  &:hover, &:focus {
+    transform: scale(1.05);
+  }
+
+  &:disabled{ 
+    cursor: not-allowed;
+    background-color: theme('colors.neutralsGrey400.light');
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+
+  .icon {
+    @apply transition;
+    stroke: theme('colors.neutralsGrey400.light');
+  }
+}
+
 .border-red {
   @apply transition;
   color: theme('colors.red');
   border: 1px solid theme('colors.red');
   background-color: transparent;
-  min-height: 39px !important;
-  max-height: 39px !important;
 
   &:hover, &:focus {
     border: 1px solid theme('colors.red');

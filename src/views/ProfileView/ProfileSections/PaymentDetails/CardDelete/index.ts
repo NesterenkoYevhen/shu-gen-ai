@@ -1,0 +1,1 @@
+export { CardDelete } from './CardDelete';

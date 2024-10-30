@@ -19,7 +19,8 @@ interface CheckboxProps extends InputAttributes {
   label: string;
   name: string;
   disabled?: boolean;
-  labelStyle: string;
+  labelStyle?: string;
+  onChangeParent?: (value: boolean) => void;
 }
 
 export const Checkbox: FC<CheckboxProps> = (props) => {
@@ -31,6 +32,7 @@ export const Checkbox: FC<CheckboxProps> = (props) => {
     disabled,
     error,
     labelStyle,
+    onChangeParent,
   } = props;
 
   const [isChecked, setIsChecked] = useState(value);
@@ -38,6 +40,7 @@ export const Checkbox: FC<CheckboxProps> = (props) => {
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
+    onChangeParent?.(event.target.checked);
   };
 
   return (

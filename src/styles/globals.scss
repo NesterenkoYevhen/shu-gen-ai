@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #18181A;
@@ -12,6 +16,8 @@
   --inputBorderColor: #B6B6BC;
   --inputBorderColorActive: #18181A;
   --checkBoxBorder: #8E8F96;
+  --secondary-btn-bg: rgba(55, 55, 55, 0.2);
+  --border-grey-btn-text: #323236;
 }
 
 .dark {
@@ -20,6 +26,8 @@
   --inputBorderColor: #F5F6FA;
   --inputBorderColorActive: #B6B6BC;
   --checkBoxBorder: #F5F6FA;
+  --secondary-btn-bg: rgba(245, 246, 250, 0.2);
+  --border-grey-btn-text: #DBDBE2;
 }
 
 body {

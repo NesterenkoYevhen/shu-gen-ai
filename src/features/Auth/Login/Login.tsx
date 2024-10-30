@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 import { handleLogin } from '@/shared/actions/actions';
 
-import { TextfieldModal } from '@/shared/ui-kit/TextfieldModal';
+import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Checkbox } from '@/shared/ui-kit/Checkbox';
@@ -76,7 +76,7 @@ export const Login: FC<ILogin> = ({
         }}
       >
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('email-label')}
             isRequired
             placeholder={t('email-placeholder')}
@@ -86,7 +86,7 @@ export const Login: FC<ILogin> = ({
           />
         </fieldset>
         <fieldset>
-          <TextfieldModal
+          <Textfield
             label={t('password-label')}
             isRequired
             placeholder={t('password-placeholder')}

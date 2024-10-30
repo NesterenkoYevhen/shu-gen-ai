@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import { useTranslations } from 'next-intl';
 
-import { Button, ButtonColors, ButtonVariants } from '@/shared/ui-kit/Button';
+import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 
 import TickBlack from '@/assets/icons/main-page/tick-black.svg';
@@ -49,7 +49,7 @@ export const Plan:FC<IPlan> = ({
         <Typography variant={TypographyVariants.TITLE_3}>{t(`${label}.price`)}</Typography>
         <Typography variant={TypographyVariants.MAIN}>{t(`${label}.period`)}</Typography>
       </div>
-      <Button color={ButtonColors.GREEN} variant={isPopular ? ButtonVariants.PRIMARY : ButtonVariants.SECONDARY} width="205px" className="mt-4">
+      <Button variant={isPopular ? ButtonVariants.PRIMARY : ButtonVariants.SECONDARY} width="205px" className="mt-4">
         {t('subscribe')}
       </Button>
       <PlanFeatures features={features.map((el) => t(`${label}.${el}`))} />

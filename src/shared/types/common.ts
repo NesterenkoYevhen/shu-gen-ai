@@ -3,6 +3,7 @@ import { StaticImageData } from 'next/image';
 import { IconType } from 'react-icons';
 
 import { PathnamesType } from '@/features/LocaleNavigation';
+import { ReactNode } from 'react';
 
 export type Svg = React.VFC<React.SVGProps<SVGSVGElement>>;
 
@@ -14,4 +15,18 @@ export interface Feature {
   Icon: IconType;
   route: PathnamesType;
   Image?: StaticImageData;
+}
+
+type Plan = 'FREE' | 'PRO' | 'PRO+';
+
+export interface Tarrif {
+  id: Plan;
+  label: string;
+  price: string;
+}
+
+export interface DropdownList {
+  value:string;
+  label:string | ReactNode;
+  className?:string;
 }
