@@ -71,8 +71,18 @@ export const Search = () => {
             </LocaleLink>
           ))}
 
-          <LocaleLink href="/search">
-            <li className="pt-3.5 w-full cursor-pointer text-secondaryGreen-light">
+          <LocaleLink
+            href="/search"
+            onClick={() => {
+              setIsSearchResut(false);
+              setSearchQuery('');
+            }}
+          >
+            <li className={cn('w-full cursor-pointer text-secondaryGreen-light', {
+              'pt-0': searchResults.length === 0,
+              'pt-3.5': searchResults.length > 0,
+            })}
+            >
               <Typography variant={TypographyVariants.MAIN} fontWeight="bold">
                 {t('search.all-tools')}
               </Typography>

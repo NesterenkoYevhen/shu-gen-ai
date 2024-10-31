@@ -504,6 +504,12 @@
       "seeMore": "See more",
       "seeLess": "See less"
     }
+  },
+
+  "search-page": {
+    "title": "Find tools",
+    "description": "We offer PDF, video, image and other online tools to make your life easier",
+    "search": "Search"
   }
   
 }
