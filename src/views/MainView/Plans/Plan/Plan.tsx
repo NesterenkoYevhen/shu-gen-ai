@@ -2,12 +2,12 @@ import cn from 'classnames';
 
 import { useTranslations } from 'next-intl';
 
-import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 
 import TickBlack from '@/assets/icons/main-page/tick-black.svg';
 import TickWhite from '@/assets/icons/main-page/tick-white.svg';
 import { FC } from 'react';
+import { Payment } from '../Payment';
 
 const PlanFeatures = ({ features }: { features: string[] }) => (
   <ul className="flex flex-col gap-4 mt-8">
@@ -25,12 +25,13 @@ const PlanFeatures = ({ features }: { features: string[] }) => (
 
 interface IPlan {
   label: string;
+  id: number;
   features: string[];
   isPopular?: boolean;
 }
 
 export const Plan:FC<IPlan> = ({
-  label, features, isPopular = false,
+  label, features, isPopular = false, id,
 }) => {
   const t = useTranslations('main-page.plans');
   return (
@@ -49,9 +50,7 @@ export const Plan:FC<IPlan> = ({
         <Typography variant={TypographyVariants.TITLE_3}>{t(`${label}.price`)}</Typography>
         <Typography variant={TypographyVariants.MAIN}>{t(`${label}.period`)}</Typography>
       </div>
-      <Button variant={isPopular ? ButtonVariants.PRIMARY : ButtonVariants.SECONDARY} width="205px" className="mt-4">
-        {t('subscribe')}
-      </Button>
+      <Payment label={label} isPopular={isPopular} tarrifId={id} />
       <PlanFeatures features={features.map((el) => t(`${label}.${el}`))} />
     </li>
   );

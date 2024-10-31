@@ -72,10 +72,18 @@
     "plans": {
       "title": "Price plans",
       "subscribe": "Subscribe",
-      "popular": "most popular", 
+      "popular": "most popular",
+      "card-error": "Invalid card number",
+      "modal-title": "Tariff payment",
+      "success-pay": "Tariff payment was successfully done",
+      "order-label": "Order",
+      "card-label": "Card number",
+      "pay": "Pay",
+      "pay-pending": "Paying..." ,
       "free-plan": {
         "title": "Free plan",
         "price": "3 days",
+        "price-value": "$0",
         "period": "/ trial",
         "feature1": "Full access for file convertor tools",
         "feature2": "Full access for pdf tools",
@@ -86,6 +94,7 @@
       "pro-plan": {
         "title": "Pro plan",
         "price": "$5",
+        "price-value": "$5",
         "period": "/ month",
         "feature1": "All features of the Free Plan without ads",
         "feature2": "Full access for image tools",
@@ -98,6 +107,7 @@
       "pro-plus-plan": {
         "title": "Pro+ plan",
         "price": "$10",
+        "price-value": "$10",
         "period": "/ month",
         "feature1": "All features of the Pro Plan",
         "feature2": "Full access for write tools",

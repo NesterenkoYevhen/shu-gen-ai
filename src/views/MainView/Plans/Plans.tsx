@@ -7,15 +7,18 @@ export const Plans = () => {
   const t = useTranslations('main-page.plans');
   const plans = [
     {
+      id: 1,
       label: 'free-plan',
       features: ['feature1', 'feature2', 'feature3', 'feature4'],
     },
     {
+      id: 2,
       label: 'pro-plan',
       features: ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'],
       isPopular: true,
     },
     {
+      id: 3,
       label: 'pro-plus-plan',
       features: ['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'feature6'],
     },
