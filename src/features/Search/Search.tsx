@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import cn from 'classnames';
 import Highlighter from 'react-highlight-words';
 
@@ -18,6 +18,7 @@ import { LocaleLink } from '../LocaleNavigation';
 
 export const Search = () => {
   const t = useTranslations();
+  const id = useId();
   const searchRef = useRef<HTMLDivElement>(null);
   const [isSearchResult, setIsSearchResut] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,13 +34,13 @@ export const Search = () => {
   return (
     <div className="relative" ref={searchRef}>
       <div className="flex bg-neutralsGrey100-light dark:bg-neutralsGrey100-dark rounded-2xl w-[254px] xl:w-[220px] gap-2 items-center py-3 px-4">
-        <label htmlFor="search">
+        <label htmlFor={id}>
           <SearchLight className="block dark:hidden" />
           <SearchDark className="hidden dark:block" />
         </label>
 
         <input
-          id="search"
+          id={id}
           type="text"
           className="outline-none bg-transparent w-[90%]"
           placeholder={t('search.placeholder')}

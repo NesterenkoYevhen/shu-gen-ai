@@ -161,15 +161,21 @@
       },
       "cut-out-an-object": {
         "name": "Cut out an object",
-        "description": "Cut out objects from images"
+        "description": "Cut out objects from images",
+        "action-description": "Choose objects to cut out",
+        "action": "Cut out"
       },
       "pick-up-an-object": {
         "name": "Pick up an object",
-        "description": "Select an object within images"
+        "description": "Select an object within images",
+        "action-description": "Choose objects to pick up",
+        "action": "Pick up"
       },
       "edit-the-background": {
         "name": "Edit the background",
-        "description": "Change or modify image backgrounds"
+        "description": "Change or modify image backgrounds",
+        "action-description": "Choose background",
+        "action": "Choose"
       },
       "black-and-white": {
         "name": "Black and white",
@@ -213,31 +219,45 @@
       "category": "Write tools",
       "summary": {
         "name": "Summary",
-        "description": "Generate a brief summary of content"
+        "description": "Generate a brief summary of content",
+        "action-description": "Input text below",
+        "action": "Text"
       },
       "rewriter": {
         "name": "Rewriter",
-        "description": "Rewrite content with new wording"
+        "description": "Rewrite content with new wording",
+        "action-description": "Input text below",
+        "action": "Text"
       },
       "essay": {
         "name": "Essay",
-        "description": "Generate or help write essays"
+        "description": "Generate or help write essays",
+        "action-description": "Input topic below",
+        "action": "Topic"
       },
       "paragraph": {
         "name": "Paragraph",
-        "description": "Generate or improve paragraphs"
+        "description": "Generate or improve paragraphs",
+        "action-description": "Input topic below",
+        "action": "Topic"
       },
       "grammar-checker": {
         "name": "Grammar checker",
-        "description": "Check and correct grammar mistakes"
+        "description": "Check and correct grammar mistakes",
+        "action-description": "Input text below",
+        "action": "Text"
       },
       "post": {
         "name": "Post",
-        "description": "Generate posts for social media"
+        "description": "Generate posts for social media",
+        "action-description": "Input topic below",
+        "action": "Topic"
       },
       "code-documentation": {
         "name": "Code documentation",
-        "description": "Generate documentation for code"
+        "description": "Generate documentation for code",
+        "action-description": "Input code below",
+        "action": "Code"
       }
     },
     "file": {
@@ -308,6 +328,19 @@
         "description": "Extract audio from MP4 to MP3"
       }
     }
+  },
+
+  "backgrounds": {
+    "city": "city",
+    "beach": "beach",
+    "desert": "desert",
+    "field": "field",
+    "forest-autumn": "autumn forest",
+    "forest": "forest",
+    "mountains": "mountains",
+    "snow-mountains": "snow mountains",
+    "office": "office",
+    "underwater": "underwater"
   },
 
   "auth": {
@@ -510,6 +543,32 @@
     "title": "Find tools",
     "description": "We offer PDF, video, image and other online tools to make your life easier",
     "search": "Search"
+  },
+
+  "features-pages": {
+    "easily": "Easily",
+    "reset": "Reset",
+    "upload-long": "Upload from PC or Mobile",
+    "drag-option": "or Drag files here",
+    "process": "Process",
+    "before": "Before",
+    "after": "After",
+    "download": "Download",
+    "size": "Size",
+    "type": "Type",
+    "result": "Result",
+    "generate": "Generate",
+    "generate-pending": "Generating...",
+    "ai-output": "AI Output",
+    "write-description": "Use the generated content as you please",
+    "editor-placeholder": "AI output will be here...",
+    "rewrite": "Rewrite",
+    "rewrite-pending": "Rewriting...",
+    "copy-success": "Successfully copied",
+    "copy-fail": "Failed copy",
+    "input-required": "You have to write a text for request",
+    "submit-fail": "Error, try to do this later",
+    "submit-success": "Successfully request was made"
   }
   
 }

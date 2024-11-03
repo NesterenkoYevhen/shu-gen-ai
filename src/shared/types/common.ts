@@ -30,3 +30,9 @@ export interface DropdownList {
   label:string | ReactNode;
   className?:string;
 }
+
+export interface Background {
+  id: number;
+  label: string;
+  Icon: IconType;
+}

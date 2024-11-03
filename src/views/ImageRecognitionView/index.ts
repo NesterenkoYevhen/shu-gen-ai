@@ -1,0 +1,1 @@
+export { ImageRecognitionView } from './ImageRecognitionView';

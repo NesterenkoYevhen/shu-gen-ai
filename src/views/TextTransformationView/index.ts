@@ -1,0 +1,1 @@
+export { TextTransformationView } from './TextTransformationView';

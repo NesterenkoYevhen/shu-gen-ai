@@ -46,7 +46,7 @@ const config: Config = {
       },
       primaryGreen: {
         light: '#B9FF66',
-        dark: '#B9FF66',
+        dark: '#5B9611',
       },
       secondaryGreen: {
         light: '#5B9611',
