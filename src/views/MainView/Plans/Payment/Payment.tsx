@@ -5,29 +5,34 @@ import {
   useId, useRef, useState,
   useTransition,
 } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { useBodyOverflow } from '@/shared/hooks/useBodyOverflow';
-
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { ModalWindow } from '@/shared/ui-kit/ModalWindow';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import toast from 'react-hot-toast';
 import InputMask from 'react-input-mask';
 import { Textfield } from '@/shared/ui-kit/Textfield';
+import { PlanAPIType } from '@/shared/types/common';
+import { createSubscriptions } from '@/shared/actions/subscriptions';
 
 interface IPayment {
-  tarrifId: number;
+  tarrifId: PlanAPIType;
   label: string;
   isPopular?: boolean;
+  duration: number;
 }
 
-export const Payment:FC<IPayment> = ({ tarrifId, label, isPopular }) => {
+export const Payment: FC<IPayment> = ({
+  tarrifId, label, isPopular, duration,
+}) => {
   const t = useTranslations('main-page.plans');
   const formRef = useRef<HTMLFormElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardNumberError, setCardNumberError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const locale = useLocale();
   const id = useId();
 
   const validateCardNumber = (cardNumber: string) => {
@@ -54,15 +59,19 @@ export const Payment:FC<IPayment> = ({ tarrifId, label, isPopular }) => {
               const formData = new FormData(e.currentTarget);
               const cardNumber = formData.get('card_number') as string;
 
-              startTransition(() => {
+              startTransition(async () => {
                 const cardNumberErrorTemp = validateCardNumber(cardNumber);
                 setCardNumberError(cardNumberErrorTemp);
 
                 if (!cardNumberErrorTemp) {
-                  formRef.current?.reset();
-                  setIsModalOpen(false);
-                  console.log(tarrifId);
-                  toast.success(t('success-pay'));
+                  try {
+                    await createSubscriptions(tarrifId, duration.toString(), locale);
+                    formRef.current?.reset();
+                    setIsModalOpen(false);
+                    toast.success(t('success-pay'));
+                  } catch (error) {
+                    toast.error(t('error-pay'));
+                  }
                 }
               });
             }}
@@ -100,7 +109,12 @@ export const Payment:FC<IPayment> = ({ tarrifId, label, isPopular }) => {
           </form>
         </div>
       </ModalWindow>
-      <Button variant={isPopular ? ButtonVariants.PRIMARY : ButtonVariants.SECONDARY} width="205px" className="mt-4" onClick={() => setIsModalOpen(true)}>
+      <Button
+        variant={isPopular ? ButtonVariants.PRIMARY : ButtonVariants.SECONDARY}
+        width="205px"
+        className="mt-4"
+        onClick={() => setIsModalOpen(true)}
+      >
         {t('subscribe')}
       </Button>
     </>

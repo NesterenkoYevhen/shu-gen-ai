@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
+import { verifyEmail } from '@/shared/actions/user';
 import { AuthView } from '../AuthView';
 
 interface IConfirmRegistration {
@@ -43,13 +44,16 @@ export const ConfirmRegistration: FC<IConfirmRegistration> = ({ isOpen, onClose,
             const code = formData.get('code') as string;
 
             const codeErrorTemp = validateCode(code);
-
             setCodeError(codeErrorTemp);
 
             if (!codeErrorTemp) {
-              console.log(email, code);
-              toast.success(t('success'));
-              onClose();
+              try {
+                await verifyEmail(email, code);
+                toast.success(t('success'));
+                onClose();
+              } catch (error) {
+                toast.error(t('verification-failed'));
+              }
             }
           });
         }}

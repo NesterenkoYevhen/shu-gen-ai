@@ -2,6 +2,9 @@ import { Container } from '@/shared/ui-kit/Container';
 
 import { Ticker } from '@/features/Ticker';
 
+import { Suspense } from 'react';
+import { Loader } from '@/shared/ui-kit/Loader';
+import { LoaderBlock } from '@/shared/ui-kit/LoaderBlock';
 import { RecentTools } from './RecentTools';
 import { Statistics } from './Statistics';
 import { ToolsGrid } from './ToolsGrid';
@@ -13,7 +16,9 @@ import { Tabs } from './Tabs';
 export const MainView = () => (
   <main className="w-full mt-4">
     <Container>
-      <RecentTools />
+      <Suspense fallback={<LoaderBlock />}>
+        <RecentTools />
+      </Suspense>
 
       <section className="mt-[98px]">
         <Hero />
@@ -31,7 +36,10 @@ export const MainView = () => (
 
     <Container>
       <section className="mt-20 sm:mt-32">
-        <Statistics />
+        <Suspense fallback={<Loader />}>
+          <Statistics />
+        </Suspense>
+
       </section>
 
       <section className="mt-[94px] sm:mt-[130px]">
@@ -48,5 +56,4 @@ export const MainView = () => (
     </Container>
 
   </main>
-
 );

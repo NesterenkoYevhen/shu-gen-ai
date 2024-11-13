@@ -2,7 +2,9 @@
 
 'use client';
 
-import { FC, useEffect, useState } from 'react';
+import {
+  FC, useCallback, useState,
+} from 'react';
 import cn from 'classnames';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
 
@@ -14,36 +16,18 @@ import CloudIcon from '@/assets/icons/features/cloud-icon.svg';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { ProcessingFeature } from '@/features/ProcessingFeature';
+import { cutOutObjectImage, pickUpObjectImage } from '@/shared/actions/image';
+import { usePathname } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { Steps } from '@/shared/types/common';
 import { Step1 } from '../Step1';
 import { Step2 } from '../Step2';
 import { Step3 } from '../Step3';
 
-const MOCKED_RECOGNIZED_IMAGE = 'https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/22606/images/a06d8c1-cd85-8a65-e2de-c75185ad4f4_object-recognition-e1541510005103.png';
-const MOCKED_RESULT_IMAGE = 'https://support.rebrandly.com/hc/article_attachments/360020801813';
-
-const MOCKED_OBJECTS = [
-  { id: 'q', name: 'person' },
-  { id: 'w', name: 'bicycle' },
-  { id: 'e', name: 'motorcycle' },
-  { id: 'r', name: 'airplane' },
-  { id: 't', name: 'bus' },
-  { id: 'y', name: 'train' },
-  { id: 'i', name: 'truck' },
-  { id: 'o', name: 'boat' },
-  { id: 'p', name: 'traffic light' },
-  { id: 'a', name: 'fire hydrant' },
-  { id: 's', name: 'stop sign' },
-];
-
-export interface ObjectItem {
-  id: string;
-  name: string;
-}
-
-interface Steps {
-  [key: number]: JSX.Element;
-}
-
+const recognitionProcessors: Record<string, (formData: FormData, locale: string, requestType: 'recognition' | 'processing') => Promise<{ file?: string; segmented_image_url?: string; objects?: string[] }>> = {
+  'pick-up-an-object': pickUpObjectImage,
+  'cut-out-an-object': cutOutObjectImage,
+};
 interface IMainController {
   featureType: string;
 }
@@ -52,61 +36,67 @@ export const MainController:FC<IMainController> = ({ featureType }) => {
   const t = useTranslations('features-pages');
   const [images, setImages] = useState<ImageListType>([]);
   const [imageURL, setImageURL] = useState<string | null>(null);
+  const [recognisedImageURL, setRecognisedImageURL] = useState<string | null>(null);
+  const [resultImageURL, setResultImageURL] = useState<string | null>(null);
   const [imageFormData, setImageFormData] = useState<FormData | null>(null);
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
-  const [selectedObjects, setSelectedObjects] = useState<ObjectItem[]>([]);
+  const [recognisedObjects, setRecognisedObjects] = useState<string[]>([]);
+  const [selectedObjects, setSelectedObjects] = useState<string[]>([]);
   const [step, setStep] = useState(0);
-  const [nextStep, setNextStep] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const pathname = usePathname();
+  const pathLocale = pathname.split('/')[1] || 'en';
 
-  console.log(imageFormData);
-
-  useEffect(() => {
-    if (isTransitioning) {
-      setStep(0);
-      const timer = setTimeout(() => {
-        setStep(nextStep);
-        setIsTransitioning(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning, nextStep]);
-
-  const changeStepWithTransition = (newStep: number) => {
-    setNextStep(newStep);
-    setIsTransitioning(true);
-  };
-
-  const resetImageState = () => {
+  const resetImageState = useCallback(() => {
     setImages([]);
     setImageURL(null);
     setImageFormData(null);
     setImageDimensions(null);
     setSelectedObjects([]);
-    setStep(0);
-    setNextStep(0);
-    setIsTransitioning(false);
+    setStep(1);
+  }, []);
+
+  const processImage = async (requestType: 'recognition' | 'processing') => {
+    if (imageFormData) {
+      setStep(0);
+      const processFunction = recognitionProcessors[featureType];
+      if (requestType === 'processing') {
+        imageFormData.append('objects', selectedObjects.join(','));
+      }
+      if (processFunction) {
+        try {
+          const result = await processFunction(imageFormData, pathLocale, requestType);
+
+          if (requestType === 'recognition') {
+            setRecognisedImageURL(result?.segmented_image_url || '');
+            setRecognisedObjects(result?.objects || []);
+            setStep(2);
+          } else {
+            setResultImageURL(result?.file || '');
+            setStep(3);
+          }
+        } catch {
+          toast.error(t('Error'));
+          resetImageState();
+        }
+      }
+    }
   };
 
   const onChange = (imageList: ImageListType) => {
     setImages(imageList);
-
     if (imageList.length > 0) {
       const { dataURL, file } = imageList[0];
       setImageURL(dataURL || null);
-
       if (file) {
         const formData = new FormData();
-        formData.append('upload', file);
+        formData.append('file', file);
         setImageFormData(formData);
       }
 
       const img = new window.Image();
       img.src = dataURL || '';
-      img.onload = () => {
-        setImageDimensions({ width: img.width, height: img.height });
-      };
-      changeStepWithTransition(1);
+      img.onload = () => setImageDimensions({ width: img.width, height: img.height });
+      setStep(1);
     } else {
       resetImageState();
     }
@@ -114,9 +104,9 @@ export const MainController:FC<IMainController> = ({ featureType }) => {
 
   const steps: Steps = {
     0: <ProcessingFeature />,
-    1: <Step1 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={imageURL || ''} changeStep={changeStepWithTransition} />,
-    2: <Step2 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={MOCKED_RECOGNIZED_IMAGE} changeStep={changeStepWithTransition} objects={MOCKED_OBJECTS} selectedObjects={selectedObjects} setSelectedObjects={setSelectedObjects} featureType={featureType} />,
-    3: <Step3 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} startImageURL={imageURL || ''} resultImageURL={MOCKED_RESULT_IMAGE} />,
+    1: <Step1 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={imageURL || ''} changeStep={() => processImage('recognition')} />,
+    2: <Step2 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={recognisedImageURL || ''} changeStep={() => processImage('processing')} objects={recognisedObjects} selectedObjects={selectedObjects} setSelectedObjects={setSelectedObjects} featureType={featureType} />,
+    3: <Step3 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} startImageURL={imageURL || ''} resultImageURL={resultImageURL || ''} />,
   };
 
   return (

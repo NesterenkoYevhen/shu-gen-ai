@@ -1,91 +1,95 @@
-/* eslint-disable consistent-return */
-
 'use client';
 
-import { FC, useEffect, useState } from 'react';
+import { FC, useState, useCallback } from 'react';
 import cn from 'classnames';
 import ImageUploading, { ImageListType } from 'react-images-uploading';
-
 import { useTranslations } from 'next-intl';
+import toast from 'react-hot-toast';
 
 import UploadIcon from '@/assets/icons/features/upload-icon.svg';
 import CloudIcon from '@/assets/icons/features/cloud-icon.svg';
-
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { ProcessingFeature } from '@/features/ProcessingFeature';
+import {
+  createBlackAndWhiteImage, createBlurImage, createPixelatedImage, createRoundImage,
+  editBackgroundImage,
+  removeBackgroundImage,
+} from '@/shared/actions/image';
+import { Steps } from '@/shared/types/common';
+import { usePathname } from 'next/navigation';
 import { Step1 } from '../Step1';
 import { Step2 } from '../Step2';
 
-const MOCKED_RESULT_IMAGE = 'https://support.rebrandly.com/hc/article_attachments/360020801813';
-
-interface Steps {
-  [key: number]: JSX.Element;
-}
+const imageProcessors: Record<string, (formData: FormData, locale: string) => Promise<{ file: string }>> = {
+  'black-and-white': createBlackAndWhiteImage,
+  blur: createBlurImage,
+  round: createRoundImage,
+  pixelate: createPixelatedImage,
+  'remove-the-background': removeBackgroundImage,
+  'edit-the-background': editBackgroundImage,
+};
 
 interface IMainController {
   featureType: string;
 }
 
-export const MainController:FC<IMainController> = ({ featureType }) => {
+export const MainController: FC<IMainController> = ({ featureType }) => {
   const t = useTranslations('features-pages');
   const [images, setImages] = useState<ImageListType>([]);
   const [imageURL, setImageURL] = useState<string | null>(null);
+  const [resultImageURL, setResultImageURL] = useState<string | null>(null);
   const [imageFormData, setImageFormData] = useState<FormData | null>(null);
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number } | null>(null);
   const [selectedBackground, setSelectedBackground] = useState<number>(0);
   const [step, setStep] = useState(0);
-  const [nextStep, setNextStep] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const pathname = usePathname();
+  const pathLocale = pathname.split('/')[1] || 'en';
 
-  console.log(imageFormData);
-
-  useEffect(() => {
-    if (isTransitioning) {
-      setStep(0);
-      const timer = setTimeout(() => {
-        setStep(nextStep);
-        setIsTransitioning(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning, nextStep]);
-
-  const changeStepWithTransition = (newStep: number) => {
-    setNextStep(newStep);
-    setIsTransitioning(true);
-  };
-
-  const resetImageState = () => {
+  const resetImageState = useCallback(() => {
     setImages([]);
     setImageURL(null);
     setImageFormData(null);
     setImageDimensions(null);
     setSelectedBackground(0);
-    setStep(0);
-    setNextStep(0);
-    setIsTransitioning(false);
+    setStep(1);
+  }, []);
+
+  const processImage = async () => {
+    if (imageFormData) {
+      setStep(0);
+      const processFunction = imageProcessors[featureType];
+      if (processFunction) {
+        try {
+          if (featureType === 'edit-the-background') {
+            imageFormData.append('background', selectedBackground.toString());
+          }
+          const result = await processFunction(imageFormData, pathLocale);
+          setResultImageURL(result.file);
+          setStep(2);
+        } catch {
+          toast.error(t('Error'));
+          resetImageState();
+        }
+      }
+    }
   };
 
   const onChange = (imageList: ImageListType) => {
     setImages(imageList);
-
     if (imageList.length > 0) {
       const { dataURL, file } = imageList[0];
       setImageURL(dataURL || null);
-
       if (file) {
         const formData = new FormData();
-        formData.append('upload', file);
+        formData.append('file', file);
         setImageFormData(formData);
       }
 
       const img = new window.Image();
       img.src = dataURL || '';
-      img.onload = () => {
-        setImageDimensions({ width: img.width, height: img.height });
-      };
-      changeStepWithTransition(1);
+      img.onload = () => setImageDimensions({ width: img.width, height: img.height });
+      setStep(1);
     } else {
       resetImageState();
     }
@@ -93,8 +97,8 @@ export const MainController:FC<IMainController> = ({ featureType }) => {
 
   const steps: Steps = {
     0: <ProcessingFeature />,
-    1: <Step1 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={imageURL || ''} changeStep={changeStepWithTransition} featureType={featureType} selectedBackground={selectedBackground} setSelectedBackground={setSelectedBackground} />,
-    2: <Step2 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} startImageURL={imageURL || ''} resultImageURL={MOCKED_RESULT_IMAGE} />,
+    1: <Step1 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} imageURL={imageURL || ''} changeStep={processImage} featureType={featureType} selectedBackground={selectedBackground} setSelectedBackground={setSelectedBackground} />,
+    2: <Step2 imageWidth={imageDimensions?.width || 0} imageHeight={imageDimensions?.height || 0} startImageURL={imageURL || ''} resultImageURL={resultImageURL || ''} />,
   };
 
   return (
@@ -102,11 +106,7 @@ export const MainController:FC<IMainController> = ({ featureType }) => {
       {imageURL ? (
         <div className="mt-10">
           {step !== 0 && (
-            <Button
-              variant={ButtonVariants.SECONDARY}
-              onClick={resetImageState}
-              width="194px"
-            >
+            <Button variant={ButtonVariants.SECONDARY} onClick={resetImageState} width="194px">
               {t('reset')}
             </Button>
           )}

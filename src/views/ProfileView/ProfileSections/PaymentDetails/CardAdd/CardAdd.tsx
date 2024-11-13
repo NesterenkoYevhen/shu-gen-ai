@@ -16,6 +16,8 @@ import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 
 import AddIcon from '@/assets/icons/profile/plus.svg';
+import { createCard } from '@/shared/actions/cards';
+import { usePathname } from 'next/navigation';
 
 export const CardAdd = () => {
   const t = useTranslations('profile.payment-details.card-add');
@@ -24,9 +26,14 @@ export const CardAdd = () => {
   const id = useId();
   const [cardNumberError, setCardNumberError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+  const pathLocale = pathname.split('/')[1] || 'en';
 
   const validateCardNumber = (cardNumber: string) => {
     const cleanedNumber = cardNumber.replace(/\s+/g, '');
+    if (!/^4|5/.test(cleanedNumber)) {
+      return t('invalid-start');
+    }
     if (cleanedNumber.length !== 16 || !/^\d{16}$/.test(cleanedNumber)) {
       return t('invalid-card-number');
     }
@@ -34,6 +41,17 @@ export const CardAdd = () => {
   };
 
   useBodyOverflow({ condition: isOpen, elementId: id });
+
+  const handleAddCard = async (cardNumber: string) => {
+    try {
+      await createCard(cardNumber.replace(/\s+/g, ''), pathLocale);
+      toast.success(t('success'));
+      setIsOpen(false);
+      formRef.current?.reset();
+    } catch (error) {
+      toast.error(t('error'));
+    }
+  };
 
   return (
     <>
@@ -54,9 +72,7 @@ export const CardAdd = () => {
                 setCardNumberError(cardNumberErrorTemp);
 
                 if (!cardNumberErrorTemp) {
-                  formRef.current?.reset();
-                  setIsOpen(false);
-                  toast.success(t('success'));
+                  handleAddCard(cardNumber);
                 }
               });
             }}

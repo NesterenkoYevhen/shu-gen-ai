@@ -87,7 +87,7 @@ export const Step3: FC<IStep3> = ({
       </div>
 
       <div className="max-w-full 3xl:max-w-[25%] flex flex-col justify-between w-full items-center gap-3">
-        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => downloadFile(resultImageURL)}>{t('download')}</Button>
+        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => downloadFile(resultImageURL, 'shugen-ai-image')}>{t('download')}</Button>
       </div>
     </div>
   );

@@ -14,16 +14,18 @@ interface IStep3Props {
 
 export const Step3: FC<IStep3Props> = ({ file, transformedFile }) => {
   const t = useTranslations('features-pages');
+  const fileExtension = transformedFile.split('.').reverse().at(0);
+  const fileName = `${file.name.split('.')[0]}.${fileExtension}`;
   return (
     <div className="w-[833px] h-[393px] rounded-[40px] flex flex-col items-center justify-center bg-additionalGrey200-light dark:bg-additionalGrey200-dark p-6">
       <Typography variant={TypographyVariants.TITLE_3}>
-        {file.name}
+        {fileName}
         {' '}
         -
         {' '}
         {t('result')}
       </Typography>
-      <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => downloadFile(transformedFile, file.name)} className="mt-4">
+      <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => downloadFile(transformedFile, fileName)} className="mt-4">
         {t('download')}
       </Button>
     </div>

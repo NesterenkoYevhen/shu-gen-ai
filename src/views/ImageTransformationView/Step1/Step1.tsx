@@ -15,7 +15,7 @@ interface IStep1 {
   imageWidth: number;
   imageHeight: number;
   imageURL: string;
-  changeStep: (value: number) => void;
+  changeStep: () => void;
   featureType: string;
   selectedBackground: number;
   setSelectedBackground: React.Dispatch<React.SetStateAction<number>>;
@@ -66,11 +66,11 @@ export const Step1: FC<IStep1> = ({
               </li>
             ))}
           </ul>
-          <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep(2)}>{t(`features.image.${featureType}.action`)}</Button>
+          <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep()} disabled={!selectedBackground}>{t(`features.image.${featureType}.action`)}</Button>
         </div>
       ) : (
         <div className="max-w-full 3xl:max-w-[25%] flex flex-col justify-end w-full items-center">
-          <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep(2)}>{t('features-pages.process')}</Button>
+          <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep()}>{t('features-pages.process')}</Button>
         </div>
       )}
     </div>

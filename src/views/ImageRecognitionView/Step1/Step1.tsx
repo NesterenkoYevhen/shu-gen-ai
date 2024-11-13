@@ -11,7 +11,7 @@ interface IStep1 {
   imageWidth: number;
   imageHeight: number;
   imageURL: string;
-  changeStep: (value: number) => void;
+  changeStep: () => void;
 }
 
 export const Step1: FC<IStep1> = ({
@@ -44,7 +44,7 @@ export const Step1: FC<IStep1> = ({
         <Image src={imageURL} alt="Uploaded" className="object-cover" fill />
       </div>
       <div className="max-w-full 3xl:max-w-[25%] flex flex-col justify-end w-full items-center">
-        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep(2)}>{t('process')}</Button>
+        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep()}>{t('process')}</Button>
       </div>
     </div>
   );

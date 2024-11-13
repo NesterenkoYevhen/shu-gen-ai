@@ -9,6 +9,7 @@ declare module 'react-input-mask' {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     children: (inputProps: any) => ReactNode;
     maskChar?: null;
+    defaultValue?: any;
   }
 
   const InputMask: ComponentType<InputProps>;

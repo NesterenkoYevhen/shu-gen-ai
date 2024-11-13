@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
+import { forgotPasswordVerify } from '@/shared/actions/user';
 import { AuthView } from '../AuthView';
 
 interface IResetPassword {
@@ -36,7 +37,9 @@ export const ResetPassword: FC<IResetPassword> = ({ isOpen, onClose, email }) =>
     return null;
   };
 
-  const validateConfirmPassword = (password: string, confirmPassword: string) => (password === confirmPassword ? null : t('confirm-password-mismatch'));
+  const validateConfirmPassword = (password: string, confirmPassword: string) => (
+    password === confirmPassword ? null : t('confirm-password-mismatch')
+  );
 
   useEffect(() => {
     if (!isOpen) {
@@ -68,9 +71,13 @@ export const ResetPassword: FC<IResetPassword> = ({ isOpen, onClose, email }) =>
             setConfirmPasswordError(confirmPasswordErrorTemp);
 
             if (!codeErrorTemp && !passwordErrorTemp && !confirmPasswordErrorTemp) {
-              console.log(email, formData);
-              toast.success(t('success'));
-              onClose();
+              try {
+                await forgotPasswordVerify(email, code, password);
+                toast.success(t('success'));
+                onClose();
+              } catch (error) {
+                toast.error(t('reset-failed'));
+              }
             }
           });
         }}

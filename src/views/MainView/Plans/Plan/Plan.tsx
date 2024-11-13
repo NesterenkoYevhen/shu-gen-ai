@@ -7,6 +7,7 @@ import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import TickBlack from '@/assets/icons/main-page/tick-black.svg';
 import TickWhite from '@/assets/icons/main-page/tick-white.svg';
 import { FC } from 'react';
+import { PlanAPIType } from '@/shared/types/common';
 import { Payment } from '../Payment';
 
 const PlanFeatures = ({ features }: { features: string[] }) => (
@@ -25,13 +26,14 @@ const PlanFeatures = ({ features }: { features: string[] }) => (
 
 interface IPlan {
   label: string;
-  id: number;
+  id: PlanAPIType;
   features: string[];
   isPopular?: boolean;
+  duration: number;
 }
 
 export const Plan:FC<IPlan> = ({
-  label, features, isPopular = false, id,
+  label, features, isPopular = false, id, duration,
 }) => {
   const t = useTranslations('main-page.plans');
   return (
@@ -39,7 +41,6 @@ export const Plan:FC<IPlan> = ({
       'bg-additionalGrey200-light dark:bg-additionalGrey200-dark': isPopular,
     })}
     >
-      {/* Содержимое карточки */}
       {isPopular && (
         <div className="absolute top-[-16px] left-6 z-2 py-1 px-3 bg-background-light dark:bg-background-dark rounded-2xl border border-solid border-neutralsGrey300-light dark:border-neutralsGrey300-dark">
           <Typography variant={TypographyVariants.SECONDARY} className="text-secondaryGreen-light">{t('popular')}</Typography>
@@ -50,7 +51,7 @@ export const Plan:FC<IPlan> = ({
         <Typography variant={TypographyVariants.TITLE_3}>{t(`${label}.price`)}</Typography>
         <Typography variant={TypographyVariants.MAIN}>{t(`${label}.period`)}</Typography>
       </div>
-      <Payment label={label} isPopular={isPopular} tarrifId={id} />
+      <Payment label={label} isPopular={isPopular} tarrifId={id} duration={duration} />
       <PlanFeatures features={features.map((el) => t(`${label}.${el}`))} />
     </li>
   );

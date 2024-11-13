@@ -139,7 +139,8 @@
   background-color: transparent;
 
   &:hover, &:focus {
-    border: 1px solid theme('colors.red');
+    background-color: var(--secondary-btn-bg);
+    transform: scale(1.05);
   }
 
   &:disabled{ 

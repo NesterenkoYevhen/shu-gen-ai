@@ -1,6 +1,10 @@
-import { useState } from 'react';
+'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
+
+import { UserResponse } from '@/shared/types/common';
 
 import { ConfirmRegistration } from '@/features/Auth/ConfirmRegistration';
 import { ForgotPassword } from '@/features/Auth/ForgotPassword';
@@ -8,14 +12,31 @@ import { Login } from '@/features/Auth/Login';
 import { Registration } from '@/features/Auth/Registration';
 import { ResetPassword } from '@/features/Auth/ResetPassword';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
+import { LoggedInDropdown } from '@/features/LoggedInDropdown';
 
 export const HeaderLogin = () => {
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
   const [modal, setModal] = useState<string | null>(null);
   const [emailLogin, setEmailLogin] = useState('');
   const [emailRegistration, setEmailRegistration] = useState('');
   const t = useTranslations('header');
 
   const handleClose = () => setModal(null);
+
+  const renderContent = () => {
+    if (loading) return null;
+    if (session?.user) return <LoggedInDropdown user={session.user as UserResponse} />;
+    return (
+      <Button
+        variant={ButtonVariants.PRIMARY}
+        width="153px"
+        onClick={() => setModal('login')}
+      >
+        {t('sign-in')}
+      </Button>
+    );
+  };
 
   return (
     <div>
@@ -48,14 +69,7 @@ export const HeaderLogin = () => {
         onClose={handleClose}
         email={emailRegistration}
       />
-      <Button
-        variant={ButtonVariants.PRIMARY}
-        width="153px"
-        onClick={() => setModal('login')}
-      >
-        {t('sign-in')}
-      </Button>
-      {/* <LoggedInDropdown /> */}
+      <div>{renderContent()}</div>
     </div>
   );
 };

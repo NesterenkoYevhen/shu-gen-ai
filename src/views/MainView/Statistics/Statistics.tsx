@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-import { all } from '@/shared/constants/tools';
+import { getStatistics } from '@/shared/actions/general';
 
 import MetricsLogo from '@/assets/icons/main-page/metrics-logo.svg';
 
@@ -27,14 +27,14 @@ const StatisticCard: FC<StatisticCardProps> = ({ value, label }) => (
   </div>
 );
 
-export const Statistics = () => {
-  const t = useTranslations('main-page.statistics');
-
+export const Statistics = async () => {
+  const t = await getTranslations('main-page.statistics');
+  const statistics = await getStatistics();
   const stats = [
-    { value: '10m', label: t('card1') },
-    { value: '500k', label: t('card2') },
-    { value: '1m', label: t('card3') },
-    { value: String(all.length), label: t('card4') },
+    { value: statistics?.file_feature_count.toString(), label: t('card1') },
+    { value: statistics?.image_feature_count.toString(), label: t('card2') },
+    { value: statistics?.user_count.toString(), label: t('card3') },
+    { value: statistics?.total_feature_count.toString(), label: t('card4') },
   ];
 
   return (

@@ -9,6 +9,7 @@ import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Checkbox } from '@/shared/ui-kit/Checkbox';
+import { register } from '@/shared/actions/user';
 import { AuthView } from '../AuthView';
 
 interface IRegistration {
@@ -71,10 +72,15 @@ export const Registration: FC<IRegistration> = ({
             setPasswordError(passwordValidationError);
 
             if (!emailValidationError && !passwordValidationError) {
-              setEmail(email);
-              toast.success(t('success'));
-              onClose();
-              onOpenRegistrationConfirmation();
+              try {
+                await register(email, password);
+                setEmail(email);
+                toast.success(t('success'));
+                onClose();
+                onOpenRegistrationConfirmation();
+              } catch (error) {
+                toast.error(t('register-failed'));
+              }
             }
           });
         }}

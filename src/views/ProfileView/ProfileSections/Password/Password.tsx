@@ -2,19 +2,22 @@
 
 import { useRef, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
-
 import { useTranslations } from 'next-intl';
-
 import { Button, ButtonVariants, ButtonSize } from '@/shared/ui-kit/Button';
 import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
+import { logout, updatePassword } from '@/shared/actions/user';
+import { signOut } from 'next-auth/react';
+import { useRouter } from '@/features/LocaleNavigation';
 
 export const Password = () => {
   const t = useTranslations('profile.password');
+  const router = useRouter();
   const formRef = useRef<HTMLFormElement>(null);
   const [oldPasswordError, setOldPasswordError] = useState<string | null>(null);
   const [newPasswordError, setNewPasswordError] = useState<string | null>(null);
   const [confirmNewPasswordError, setConfirmNewPasswordError] = useState<string | null>(null);
+  const [newPassword, setNewPassword] = useState<string>(''); // State for new password
   const [isPending, startTransition] = useTransition();
 
   const validateOldPassword = (password: string) => (!password ? t('old-password-required') : null);
@@ -30,10 +33,9 @@ export const Password = () => {
 
   const validateConfirmPassword = (password: string, confirmPassword: string) => (password === confirmPassword ? null : t('confirm-password-mismatch'));
 
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
       const oldPassword = formData.get('old_password') as string;
-      const newPassword = formData.get('new_password') as string;
       const confirmNewPassword = formData.get('confirm_new_password') as string;
 
       const oldPasswordValidationError = validateOldPassword(oldPassword);
@@ -44,8 +46,16 @@ export const Password = () => {
       setNewPasswordError(newPasswordValidationError);
       setConfirmNewPasswordError(confirmNewPasswordValidationError);
 
-      if (!oldPasswordError && !newPasswordError && !confirmNewPasswordError) {
-        toast.success(t('success'));
+      if (!oldPasswordValidationError && !newPasswordValidationError && !confirmNewPasswordValidationError) {
+        try {
+          await updatePassword(oldPassword, newPassword);
+          toast.success(t('success'));
+          await logout();
+          await signOut();
+          router.push('/');
+        } catch (error) {
+          toast.error(error instanceof Error ? error.message : t('update-failed'));
+        }
       }
     });
   };
@@ -76,7 +86,11 @@ export const Password = () => {
               name="new_password"
               type="password"
               error={newPasswordError}
-              onBlur={(e) => setNewPasswordError(validatePassword(e.target.value))}
+              onBlur={(e) => {
+                const { value } = e.target;
+                setNewPassword(value);
+                setNewPasswordError(validatePassword(value));
+              }}
             />
           </fieldset>
           <fieldset>
@@ -86,6 +100,7 @@ export const Password = () => {
               name="confirm_new_password"
               type="password"
               error={confirmNewPasswordError}
+              onBlur={(e) => setConfirmNewPasswordError(validateConfirmPassword(newPassword, e.target.value))}
             />
           </fieldset>
         </div>

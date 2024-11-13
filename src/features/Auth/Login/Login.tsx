@@ -2,15 +2,12 @@ import {
   FC, useId, useRef, useState, useTransition, useEffect,
 } from 'react';
 import toast from 'react-hot-toast';
-
 import { useTranslations } from 'next-intl';
-
-import { handleLogin } from '@/shared/actions/actions';
-
 import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Checkbox } from '@/shared/ui-kit/Checkbox';
+import { signIn } from 'next-auth/react';
 import { AuthView } from '../AuthView';
 
 interface ILogin {
@@ -56,10 +53,11 @@ export const Login: FC<ILogin> = ({
       <form
         ref={formRef}
         className="mt-8 w-[297px] sm:w-[357px] flex flex-col gap-4"
-        action={(formData) => {
+        onSubmit={(event) => {
+          event.preventDefault(); // Зупинити стандартну поведінку
           startTransition(async () => {
-            const email = formData.get('email') as string;
-            const password = formData.get('password') as string;
+            const email = formRef.current?.email.value as string;
+            const password = formRef.current?.password.value as string;
 
             const emailValidationError = validateEmail(email);
             const passwordValidationError = validatePassword(password);
@@ -68,9 +66,18 @@ export const Login: FC<ILogin> = ({
             setPasswordError(passwordValidationError);
 
             if (!emailValidationError && !passwordValidationError) {
-              await handleLogin(formData);
-              toast.success(t('success'));
-              onClose();
+              const result = await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
+              });
+
+              if (result?.error) {
+                toast.error(t('login-failed'));
+              } else {
+                toast.success(t('success'));
+                onClose();
+              }
             }
           });
         }}

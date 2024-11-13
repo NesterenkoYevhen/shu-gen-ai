@@ -9,16 +9,14 @@ import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
 import { Tab } from '@/shared/ui-kit/Tab';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 
-import { ObjectItem } from '../MainController/MainController';
-
 interface IStep2 {
   imageWidth: number;
   imageHeight: number;
   imageURL: string;
   changeStep: (value: number) => void;
-  objects: ObjectItem[];
-  selectedObjects: ObjectItem[];
-  setSelectedObjects: React.Dispatch<React.SetStateAction<ObjectItem[]>>;
+  objects: string[];
+  selectedObjects: string[];
+  setSelectedObjects: React.Dispatch<React.SetStateAction<string[]>>;
   featureType: string;
 }
 
@@ -42,9 +40,7 @@ export const Step2: FC<IStep2> = ({
   };
 
   const toggleTab = (tabId: string) => {
-    setSelectedObjects((prev: ObjectItem[]) => (prev.some((obj) => obj.id === tabId)
-      ? prev.filter((obj) => obj.id !== tabId)
-      : [...prev, objects.find((obj) => obj.id === tabId) as ObjectItem]));
+    setSelectedObjects((prev) => (prev.includes(tabId) ? prev.filter((obj) => obj !== tabId) : [...prev, tabId]));
   };
 
   return (
@@ -62,18 +58,18 @@ export const Step2: FC<IStep2> = ({
         <Typography variant={TypographyVariants.TITLE_2}>{t('action-description')}</Typography>
         <ul className="mt-4 flex gap-4 flex-wrap">
           {objects.map((object) => (
-            <li key={object.id}>
+            <li key={object}>
               <Tab
-                title={object.name}
+                title={object}
                 IconBlack={FaCircleNodes}
                 IconWhite={FaCircleNodes}
-                active={selectedObjects.some((obj) => obj.id === object.id)}
-                onClick={() => toggleTab(object.id)}
+                active={selectedObjects.some((obj) => obj === object)}
+                onClick={() => toggleTab(object)}
               />
             </li>
           ))}
         </ul>
-        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep(3)}>{t('action')}</Button>
+        <Button variant={ButtonVariants.PRIMARY} width="250px" onClick={() => changeStep(3)} disabled={selectedObjects.length === 0}>{t('action')}</Button>
       </div>
     </div>
   );

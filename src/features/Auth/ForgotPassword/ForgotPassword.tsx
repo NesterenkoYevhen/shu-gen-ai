@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { Textfield } from '@/shared/ui-kit/Textfield';
 import { Typography, TypographyVariants } from '@/shared/ui-kit/Typography';
 import { Button, ButtonVariants } from '@/shared/ui-kit/Button';
+import { forgotPassword } from '@/shared/actions/user';
 import { AuthView } from '../AuthView';
 
 interface IForgotPassword {
@@ -51,15 +52,18 @@ export const ForgotPassword: FC<IForgotPassword> = ({
             const email = formData.get('email') as string;
 
             const emailValidationError = validateEmail(email);
-
             setEmailError(emailValidationError);
 
             if (!emailValidationError) {
-              setEmail(email);
-              toast.success(t('success'));
-              onClose();
-              onOpenPasswordReset();
-              // await handleLogin(formData);
+              try {
+                await forgotPassword(email);
+                setEmail(email);
+                toast.success(t('success'));
+                onClose();
+                onOpenPasswordReset();
+              } catch (error) {
+                toast.error(t('request-failed'));
+              }
             }
           });
         }}

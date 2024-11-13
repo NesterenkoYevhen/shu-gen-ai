@@ -76,6 +76,7 @@
       "card-error": "Invalid card number",
       "modal-title": "Tariff payment",
       "success-pay": "Tariff payment was successfully done",
+      "error-pay": "Tariff payment was failed",
       "order-label": "Order",
       "card-label": "Card number",
       "pay": "Pay",
@@ -148,6 +149,10 @@
     },
     "error": {
       "title": "Oops!"
+    },
+    "forbidden": {
+      "title": "Forbiden!",
+      "description": "This kind of feature is not in your subscription plan"
     }
   },
 
@@ -359,7 +364,8 @@
       "submit-pending": "Signing in...",
       "no-account": "Don't have an account?",
       "sign-up": "Sign up",
-      "remember-me": "Remember me"
+      "remember-me": "Remember me",
+      "login-failed": "Wrong email or password"
     },
     "registration": {
       "title": "Sign up",
@@ -379,7 +385,8 @@
       "submit-label": "Sign up",
       "submit-pending": "Signing up...",
       "already-have-account": "Already have an account?",
-      "sign-in": "Sign in"
+      "sign-in": "Sign in",
+      "register-failed": "User with this email already exists or registration now is unavailable"
     },
     "forgot-password": {
       "title": "Forgot password",
@@ -389,7 +396,8 @@
       "email-label": "Email",
       "email-placeholder": "example@gmail.com",
       "submit-label": "Send",
-      "submit-pending": "Sending..."
+      "submit-pending": "Sending...",
+      "request-failed": "User with this email is not exist or service now is unavailable"
     },
     "reset-password": {
       "title": "Reset your password",
@@ -408,7 +416,8 @@
       "confirm-password-placeholder": "Repeat your new password",
       "success": "Your password has been successfully changed",
       "submit-label": "Send",
-      "submit-pending": "Sending..."
+      "submit-pending": "Sending...",
+      "reset-failed": "Wrong verification code or service now is unavailable"
     },
     "confirm-registration": {
       "title": "Confirm registration",
@@ -417,7 +426,8 @@
       "code-invalid": "Code must be 6 digits.",
       "success": "You've been successfully registered",
       "submit-label": "Send",
-      "submit-pending": "Sending..."
+      "submit-pending": "Sending...",
+      "verification-failed": "Wrong verification code!"
     }
   },
 
@@ -440,7 +450,8 @@
       "description": "Before proceeding, please note that deleting your account is irreversible. Once your account is deleted, you will lose access to all your data, settings, and any services linked to your account. This action cannot be undone",
       "confirm-msg": "I want to delete an account",
       "delete": "Delete",
-      "delete-success": "Your account was successfully deleted"
+      "delete-success": "Your account was successfully deleted",
+      "delete-failed": "Error while deleting account"
     },
     "membership": {
       "title": "Membership",
@@ -453,7 +464,11 @@
       "change": "Change",
       "change-success": "Your plan was changed successfully",
       "cancel": "Cancel membership",
-      "cancel-success": "Your membership was cancelled successfully!"
+      "canceling": "Canceling...",
+      "cancel-success": "Your membership was cancelled successfully!",
+      "subscription-failed": "This type of subscription is already your or service now is unavailable",
+      "cancel-failed": "Failed to delete subscription",
+      "no-memebership": "There is no active membership"
     },
     "notifications": {
       "title": "Notifications",
@@ -491,10 +506,12 @@
       "confirm-new-password-label": "Confirm password",
       "confirm-new-password-placeholder": "Confirm new password",
       "submit": "Update",
-      "submit-pending": "Updating..."
+      "submit-pending": "Updating...",
+      "update-failed": "You have entered wrong password. Try again!"
     },
     "payment-details": {
       "title": "Payment details",
+      "no-cards": "There is no cards related to you",
       "card-add": {
         "title": "Create payment card",
         "invalid-card-number": "Invalid card number. Must be 16 digits.",
@@ -503,10 +520,12 @@
         "card-number-placeholder": "XXXX XXXX XXXX XXXX",
         "submit": "Create",
         "submit-pending": "Creating...",
-        "add-new": "Add new"
+        "add-new": "Add new",
+        "invalid-start": "Card number have to start with number 4 or 5"
       },
       "card-delete": {
-        "success": "You card was deleted successfully!"
+        "success": "You card was deleted successfully!",
+        "error": "Error while deleting card!"
       }
     },
     "personal-info": {
@@ -526,7 +545,8 @@
       "email-label": "Email",
       "email-placeholder": "Enter your email",
       "submit": "Update",
-      "submit-pending": "Updating..."
+      "submit-pending": "Updating...",
+      "update-failed": "Update personal info was failed. Try later, please!"
     },
     "recent-tools": {
       "title": "Recent tools",
@@ -535,7 +555,8 @@
       "file": "File",
       "view": "View",
       "seeMore": "See more",
-      "seeLess": "See less"
+      "seeLess": "See less",
+      "no-history": "There is no recent tools related to you"
     }
   },
 

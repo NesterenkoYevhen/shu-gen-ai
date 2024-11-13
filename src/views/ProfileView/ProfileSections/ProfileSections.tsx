@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+import { LoaderBlock } from '@/shared/ui-kit/LoaderBlock';
 import { Account } from './Account';
 import { DeleteAccount } from './DeleteAccount';
 import { Membership } from './Membership';
@@ -12,7 +14,10 @@ export const ProfileSections = () => (
     <Account />
     <PersonalInfo />
     <Membership />
-    <PaymentDetails />
+    <Suspense fallback={<LoaderBlock />}>
+      <PaymentDetails />
+    </Suspense>
+
     <RecentTools />
     <Notifications />
     <Password />
