@@ -2,8 +2,6 @@
 
 A powerful, full-stack web application built with **Next.js** that integrates **Artificial Intelligence** to provide a comprehensive suite of tools for image processing, text manipulation, file conversion, video editing, and PDF handling. ShuGenAI leverages modern web technologies like **Server-Side Rendering (SSR)**, **React Server Components (RSCs)**, and a robust tech stack to deliver a high-performance, SEO-friendly, and user-friendly experience.
 
-![ShuGenAI Screenshot](https://via.placeholder.com/1200x600/4F46E5/FFFFFF?text=ShuGenAI+Modern+AI+Platform)
-
 ---
 
 ## ✨ Features
@@ -197,5 +195,5 @@ This project is part of a **Master's Thesis**. Please refer to the thesis docume
 Developed as a Master's Thesis at **Lviv National University named after Ivan Franko**.
 Built with cutting-edge technologies from the **React** and **Next.js** ecosystems.
 
-**Live Demo without API:** _https://shu-gen-ai.vercel.app/_  
-**Thesis Document:** _[Link to your thesis PDF if publicly available]_
+**Live Demo without API:** **[Link](https://shu-gen-ai.vercel.app/)**
+**Thesis Document:** **[Link](https://drive.google.com/file/d/1KdnEoXhuqWjIAAK0g5hEfkasUgEYo9yZ/view?usp=drive_link)**
